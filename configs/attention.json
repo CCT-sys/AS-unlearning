@@ -1,0 +1,36 @@
+{
+    "mode": "unlearn",
+    "wandb_project": "",
+    "wandb_run_name": "",
+    "num_train_epochs": 30,
+    "check_val_every_n_epoch": 1,
+    "suppress_factor":0.3,
+    "boost_factor":1.2,
+    "method_name": "attention",
+    "loss_type": "AS_attn_KL",
+    "do_init_eval": false,
+    "train_set": "",
+    "valid_sets": [
+        ""
+    ],
+    "valid_subset_path": [
+        ""
+    ],
+    "valid_type_path": [
+        ""
+    ],
+    "train_batch_size": 4,
+    "eval_batch_size": 4,
+    "gradient_accumulation_steps": 16,
+    "ngpu": 1,
+    "learning_rate": 5e-4,
+    "model_name_or_path": "",
+    "tokenizer_name_or_path":"",
+    "cache_dir":"",
+    "input_length": 180,
+    "output_length": 180,
+    "target_length": 180,
+    "strategy": "deepspeed_stage_2",
+    "fp16": true,
+    "wandb_log": true
+}
