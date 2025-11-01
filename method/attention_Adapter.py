@@ -224,7 +224,7 @@ class attentionAdapter(pl.LightningModule):
                 )
                 kl_loss_retain_attn += kl_loss_layer
 
-            kl_loss_retain_attn = kl_loss_layer / len(target_layers)
+            kl_loss_retain_attn = kl_loss_retain_attn / len(target_layers)
 
 
             loss = attn_loss + kl_loss_retain_attn
