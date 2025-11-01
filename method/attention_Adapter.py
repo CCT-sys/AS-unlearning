@@ -169,12 +169,16 @@ class attentionAdapter(pl.LightningModule):
                 batch["noun_mask"], 
                 batch["boost_mask"]  
             )
-            kl_loss_attn = (
-                F.kl_div(F.log_softmax(outputs.attentions[layer_idx], dim=-1), F.softmax(adjusted_attention, dim=-1), reduction='batchmean') +
-                F.kl_div(F.log_softmax(outputs.attentions[layer_idx], dim=-2), F.softmax(adjusted_attention, dim=-2), reduction='batchmean')
+            #kl_loss_attn = (
+            #    F.kl_div(F.log_softmax(outputs.attentions[layer_idx], dim=-1), F.softmax(adjusted_attention, dim=-1), reduction='batchmean') +
+            #    F.kl_div(F.log_softmax(outputs.attentions[layer_idx], dim=-2), F.softmax(adjusted_attention, dim=-2), reduction='batchmean')
+            #)
+            #attn_loss += kl_loss_attn 
+            attn_loss += F.kl_div(
+                F.log_softmax(adjusted_attention, dim=-1),               
+                F.log_softmax(outputs.attentions[layer_idx], dim=-1), 
+                log_target=True, reduction='batchmean'       
             )
-            attn_loss += kl_loss_attn 
-
 
         attn_loss /= len(target_layers)
 
